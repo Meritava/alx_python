@@ -1,3 +1,3 @@
 for i in range(00, 100):
-    print("{}, ".format(i))
+    print("{:02d}".format(i),end=", ")
     print("\n")
