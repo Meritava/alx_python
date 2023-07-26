@@ -1,7 +1,6 @@
-#!/usr/bin/env python3
-user_input = float(input("give temprature"))
-convert_to_celsius = __import__('2-temperature').convert_to_celsius
+user_input = float(input("give temprature "))
 def convert_to_celsius(fahrenheit):
-    converted_temp = convert_to_celsius * user_input
+    converted_temp = (fahrenheit - 32) * (5 / 9)
     return converted_temp
 convert_to_celsius(400)
+print(convert_to_celsius)
