@@ -29,6 +29,8 @@ def calculate_bonus(value):
     bonus = value * BONUS_RATE
     return bonus
 """
+#!/usr/bin/env python3
+convert_to_celsius = __import__('2-temperature').convert_to_celsius
 fahrenhei = float(input("Enter the temperature in Fahrenheit: "))
 def converting(value):
     C = (5 / 9) * (value - 32)
