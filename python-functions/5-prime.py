@@ -1,5 +1,3 @@
-user_input = int(input("enter value "))
-
 def is_prime(number):
     if number > 1:
         for i in range(2, number):
@@ -8,6 +6,3 @@ def is_prime(number):
                 break 
             else:
                 print("False")
-
-
-is_prime(user_input)
