@@ -1,8 +1,10 @@
 def is_prime(number):
     if number <= 1:
-        print("False")
-        for i in range(2, number):
-            if number % i != 0:
-                print("True")
-            else:
-                print("False")
+        return False
+    for i in range(2, number):
+        if (number % i != 0):
+            print("True")
+        else:
+            print("Fasle")
+
+    
