@@ -1,5 +1,4 @@
-def add(a, b):
-    return a + b
+a = 98
 
 if __name__ == "__main__":
     pass
