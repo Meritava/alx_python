@@ -4,5 +4,7 @@ def no_c(my_string):
         if char != 'c' and char != 'C':
             new_string += char
         else:
-            new_string -= char
+            continue
     return new_string
+
+print(no_c("Chicago"))
