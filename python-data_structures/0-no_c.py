@@ -6,5 +6,3 @@ def no_c(my_string):
         else:
             continue
     return new_string
-
-print(no_c("Chicago"))
