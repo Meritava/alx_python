@@ -1,13 +1,8 @@
 def no_c(my_string):
     new_string = ""
     for char in my_string:
-        if char == 'c' and char == 'C':
-            my_string.remove(char)
+        if char != 'c' and char != 'C':
+            new_string += char
         else:
-            continue
-        new_string += char
-        return new_string
-    
-
-
-print(no_c("Chicago"))
+            new_string -= char
+    return new_string
