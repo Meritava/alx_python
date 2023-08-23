@@ -99,5 +99,6 @@ class Square:
         if self.__size == 0:
             print()
         else:
-            print("#")
+            for char in self._size:
+                print("#")
         
