@@ -100,5 +100,5 @@ class Square:
             print()
         else:
             for di in range(self.__size):
-                print("#")
+                print("#".format(di))
         
