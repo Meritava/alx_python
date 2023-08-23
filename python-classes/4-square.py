@@ -99,6 +99,6 @@ class Square:
         if self.__size == 0:
             print()
         else:
-            for char in self.__size:
+            for di in range(self.__size):
                 print("#")
         
