@@ -13,9 +13,12 @@ Last Updated:
 24/08/2023
 
 """
+
+
 class BaseGeometry:
     """
-    a base class for gometry calculation
+    A base class for geometric calculations.
+
     """
     def __dir__(self):
         attributes = super().__dir__()
