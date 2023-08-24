@@ -14,4 +14,7 @@ Last Updated:
 
 """
 class BaseGeometry:
+    """
+    a base class for gometry calculation
+    """
     pass
