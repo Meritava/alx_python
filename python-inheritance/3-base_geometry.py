@@ -13,7 +13,15 @@ Last Updated:
 24/08/2023
 
 """
-
+class aMetaClass(type):
+    """
+    this is a metaclass that is created so that any class that is created inherits the method of this class. hey type is a class that every class created in python inherites from
+    """
+    def __dir__(cls):
+        """
+        this is to remove the init subclass
+        """
+        return [attributes for attributes in super().__dir__() if attributes != '__init_subclass__']
 
 class BaseGeometry:
     """
@@ -21,6 +29,7 @@ class BaseGeometry:
 
     """
     def __dir__(cls):
-        attributes = super().__dir__()
-        new_attribute_list = [item for item in attributes if item != "__init_subclass__"]
-        return new_attribute_list
+        """
+        this is to remove the init subclass
+        """
+        return [attributes for attributes in super().__dir__() if attributes != '__init_subclass__']
