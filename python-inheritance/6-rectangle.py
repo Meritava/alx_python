@@ -88,18 +88,8 @@ class Rectangle(BaseGeometry):
         width (int): The width of the rectangle.
         height (int): The height of the rectangle.
         """
-        self.__width = 0
-        self.__height = 0
         self.integer_validator("width", width)
         self.integer_validator("height", height)
         self.__width = width
         self.__height = height
 
-    def area(self):
-        """
-        Calculate the area of the rectangle.
-
-        Returns:
-        int: The calculated area of the rectangle.
-        """
-        return self.__width * self.__height
