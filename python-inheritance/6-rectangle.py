@@ -5,34 +5,35 @@ This module defines base and derived geometric classes for calculations and vali
 
 Classes:
 - BaseGeometry: A base class for geometric calculations.
+- Rectangle: A class representing a rectangle.
 
 Module Author:
 Merit
 
 Last Updated:
-24/08/2023
+25/08/2023
 
 """
-class aMetaClass(type):
-    """
-    this is a metaclass that is created so that any class that is created inherits the method of this class. hey type is a class that every class created in python inherites from
-    """
-    def __dir__(cls):
-        """
-        this is to remove the init subclass
-        """
-        return [attributes for attributes in super().__dir__() if attributes != '__init_subclass__']
+
 
 class BaseGeometry:
     """
     A base class for geometric calculations.
 
+    Methods:
+    - area(): Raises an exception indicating that area calculation is not implemented.
+    - integer_validator(name, value): Validates that a value is a positive integer.
+
+    Attributes:
+    None
     """
-    def __dir__(cls):
-        """
-        this is to remove the init subclass
-        """
-        return [attributes for attributes in super().__dir__() if attributes != '__init_subclass__']
+
+    def __dir__(self):
+        attributes = super().__dir__()
+        new_attribute_list = [
+            item for item in attributes if item != "__init_subclass__"]
+        return new_attribute_list
+
     def area(self):
         """
         Calculate the area of a geometric shape. Not implemented in the base class.
@@ -40,7 +41,8 @@ class BaseGeometry:
         Raises:
         Exception: Indicates that area calculation is not implemented.
         """
-        raise Exception ("area() is not implemented")
+        raise Exception("area() is not implemented")
+
     def integer_validator(self, name, value):
         """
         Validate that a value is a positive integer.
@@ -57,6 +59,8 @@ class BaseGeometry:
             raise TypeError(f"{name} must be an integer")
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
+
+
 class Rectangle(BaseGeometry):
     """
     A class representing a rectangle.
@@ -69,6 +73,13 @@ class Rectangle(BaseGeometry):
     - __width (int): The width of the rectangle.
     - __height (int): The height of the rectangle.
     """
+
+    def __dir__(self):
+        attributes = super().__dir__()
+        new_attribute_list = [
+            item for item in attributes if item != "__init_subclass__"]
+        return new_attribute_list
+
     def __init__(self, width, height):
         """
         Initialize a Rectangle instance with width and height.
@@ -77,13 +88,18 @@ class Rectangle(BaseGeometry):
         width (int): The width of the rectangle.
         height (int): The height of the rectangle.
         """
+        self.__width = 0
+        self.__height = 0
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
         self.__width = width
         self.__height = height
-        if not isinstance(width, int):
-            raise TypeError("must be an integer")
-        if width <= 0:
-            raise ValueError("must be greater than 0")
-        if not isinstance(height, int):
-            raise TypeError("must be an integer")
-        if height <= 0:
-            raise ValueError("must be greater than 0")
+
+    def area(self):
+        """
+        Calculate the area of the rectangle.
+
+        Returns:
+        int: The calculated area of the rectangle.
+        """
+        return self.__width * self.__height
