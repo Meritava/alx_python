@@ -2,7 +2,10 @@
 Module: rectangle.py
 This module defines the Rectangle class, which inherits from the Base class.
 """
+
 from models.base import Base
+
+
 class Rectangle(Base):
     """
     Represents a rectangle, a subclass of the Base class.
@@ -14,6 +17,7 @@ class Rectangle(Base):
         y (int): The y-coordinate of the rectangle's position.
         id (int): The unique identifier of the rectangle.
     """
+
     def __init__(self, width, height, x=0, y=0, id=None):
         """
         Initializes a Rectangle object.
@@ -26,65 +30,67 @@ class Rectangle(Base):
             id (int, optional): The unique identifier of the rectangle.
         """
         super().__init__(id)
-        __width = width
-        __height = height
-        __x = x
-        __y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
-        @property
-        def width(self):
-            """
+    @property
+    def width(self):
+        """
         Getter for the width attribute.
         """
-            return self.__width
-        @width.setter
-        def width(self, value):   #This is the definition of the setter method for the width attribute. The self parameter refers to the instance of the class, and the value parameter is the new value you want to assign to the width attribute
-            """
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        """
         Setter for the width attribute.
         """
-            self.validate_positive_integer(value, 'width')
-            self.__width = value
-        @property
-        def height(self):
-            """
-            Getter for the height attribute.
-            """
-            return self.__height
+        self.validate_positive_integer(value, 'width')
+        self.__width = value
 
-        @height.setter
-        def height(self, value):
-            """
-            Setter for the height attribute.
-            """
-            self.validate_positive_integer(value, 'height')
-            self.__height = value
+    @property
+    def height(self):
+        """
+        Getter for the height attribute.
+        """
+        return self.__height
 
-        @property
-        def x(self):
-            """
-            Getter for the x attribute.
-            """
-            return self.__x
+    @height.setter
+    def height(self, value):
+        """
+        Setter for the height attribute.
+        """
+        self.validate_positive_integer(value, 'height')
+        self.__height = value
 
-        @x.setter
-        def x(self, value):
-            """
-            Setter for the x attribute.
-            """
-            self.validate_non_negative_integer(value, 'x')
-            self.__x = value
+    @property
+    def x(self):
+        """
+        Getter for the x attribute.
+        """
+        return self.__x
 
-        @property
-        def y(self):
-            """
-            Getter for the y attribute.
-            """
-            return self.__y
+    @x.setter
+    def x(self, value):
+        """
+        Setter for the x attribute.
+        """
+        self.validate_non_negative_integer(value, 'x')
+        self.__x = value
 
-        @y.setter
-        def y(self, value):
-            """
-            Setter for the y attribute.
-            """
-            self.validate_non_negative_integer(value, 'y')
-            self.__y = value
+    @property
+    def y(self):
+        """
+        Getter for the y attribute.
+        """
+        return self.__y
+
+    @y.setter
+    def y(self, value):
+        """
+        Setter for the y attribute.
+        """
+        self.validate_non_negative_integer(value, 'y')
+        self.__y = value
