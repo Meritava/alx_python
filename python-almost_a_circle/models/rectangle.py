@@ -41,7 +41,6 @@ class Rectangle(Base):
     @width.setter
     def width(self, value):
         """Setter for the width attribute."""
-        self.validate_positive_integer(value, 'width')
         self.__width = value
 
     @property
@@ -52,7 +51,6 @@ class Rectangle(Base):
     @height.setter
     def height(self, value):
         """Setter for the height attribute."""
-        self.validate_positive_integer(value, 'height')
         self.__height = value
 
     @property
@@ -63,7 +61,6 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         """Setter for the x attribute."""
-        self.validate_non_negative_integer(value, 'x')
         self.__x = value
 
     @property
@@ -74,81 +71,4 @@ class Rectangle(Base):
     @y.setter
     def y(self, value):
         """Setter for the y attribute."""
-        self.validate_non_negative_integer(value, 'y')
-        self.__y = value
-
-    @width.setter
-    def width(self, value):
-        """
-        Setter method for width attribute.
-        Validates and sets the width.
-
-        Args:
-            value (int): The width value to be set.
-
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is not greater than 0.
-        """
-        if not isinstance(value, int):
-            raise TypeError("Width must be an integer.")
-        if value <= 0:
-            raise ValueError("Width must be > 0.")
-        self.__width = value
-
-    @height.setter
-    def height(self, value):
-        """
-        Setter method for width attribute.
-        Validates and sets the width.
-
-        Args:
-            value (int): The width value to be set.
-
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is not greater than 0.
-        """
-        if not isinstance(value, int):
-            raise TypeError("Height must be an integer.")
-        if value <= 0:
-            raise ValueError("Height must be > 0.")
-        self.__height = value
-
-    @x.setter
-    def x(self, value):
-        """
-        Setter method for width attribute.
-        Validates and sets the width.
-
-        Args:
-            value (int): The width value to be set.
-
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is not greater than 0.
-        """
-        if not isinstance(value, int):
-            raise TypeError("x must be an integer.")
-        if value < 0:
-            raise ValueError("x must be >= 0.")
-        self.__x = value
-
-    @y.setter
-    def y(self, value):
-        """
-        Setter method for width attribute.
-        Validates and sets the width.
-
-        Args:
-            value (int): The width value to be set.
-
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is not greater than 0.
-        """
-        if not isinstance(value, int):
-            raise TypeError("y must be an integer.")
-        if value < 0:
-            raise ValueError("y must be >= 0.")
         self.__y = value
