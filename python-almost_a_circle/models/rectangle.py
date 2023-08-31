@@ -72,3 +72,35 @@ class Rectangle(Base):
     def y(self, value):
         """Setter for the y attribute."""
         self.__y = value
+
+    @width.setter
+    def width(self, value):
+        if not isinstance(value, int):
+            raise TypeError("Width must be an integer.")
+        if value <= 0:
+            raise ValueError("Width must be > 0.")
+        self.__width = value
+
+    @height.setter
+    def height(self, value):
+        if not isinstance(value, int):
+            raise TypeError("Height must be an integer.")
+        if value <= 0:
+            raise ValueError("Height must be > 0.")
+        self.__height = value
+
+    @x.setter
+    def x(self, value):
+        if not isinstance(value, int):
+            raise TypeError("x must be an integer.")
+        if value < 0:
+            raise ValueError("x must be >= 0.")
+        self.__x = value
+
+    @y.setter
+    def y(self, value):
+        if not isinstance(value, int):
+            raise TypeError("y must be an integer.")
+        if value < 0:
+            raise ValueError("y must be >= 0.")
+        self.__y = value
