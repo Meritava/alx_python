@@ -139,4 +139,26 @@ class Rectangle(Base):
             str: A formatted string representation of the Rectangle.
         """
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
-    
+    def update(self, *args):
+        """
+        Update the attributes of the Rectangle instance based on provided arguments.
+
+        Args:
+            *args: Variable-length arguments.
+                1st argument (int): ID attribute.
+                2nd argument (int): Width attribute.
+                3rd argument (int): Height attribute.
+                4th argument (int): X attribute.
+                5th argument (int): Y attribute.
+        """
+        num_args = len(args)  #This line calculates the number of arguments passed to the update method by counting the elements in the args tuple
+        if num_args >= 1:  #This conditional statement checks if at least one argument was provided. If so, it assigns the first argument to the id attribute of the rectangle.
+            self.id = args[0]
+        if num_args >= 2:    #This conditional statement checks if at least two arguments were provided. If so, it assigns the second argument to the width attribute of the rectangle.
+            self.width = args[1]
+        if num_args >= 3:
+            self.height = args[2]
+        if num_args >= 4:
+            self.x = args[3]
+        if num_args >= 5:
+            self.y = args[4]
