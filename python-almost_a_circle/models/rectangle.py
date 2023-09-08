@@ -122,10 +122,14 @@ class Rectangle(Base):
         return self.width * self.height
     def display(self):
         """
-        Display a representation of the rectangle using the '#' character.
+        Displays the Rectangle instance by printing it with '#' characters.
         """
-        for _ in range(self.__height):
-            print("#" * self.__width)
+        #for _ in range(self.height):
+            #print('#' * self.width)
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            print(' ' * self.x + '#' * self.width)
 
     def __str__(self):
         """
