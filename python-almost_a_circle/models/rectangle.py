@@ -127,11 +127,12 @@ class Rectangle(Base):
         for _ in range(self.__height):
             print("#" * self.__width)
 
-        def __str__(self):
-            """
-            Overrides the __str__ method to provide a custom string representation.
+    def __str__(self):
+        """
+        Overrides the __str__ method to provide a custom string representation.
 
-            Returns:
-                str: A formatted string representation of the Rectangle.
-            """
+        Returns:
+            str: A formatted string representation of the Rectangle.
+        """
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
+    
