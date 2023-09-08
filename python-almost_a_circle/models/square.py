@@ -1,30 +1,54 @@
-# models/square.py
+"""
+Module: square.py
+This module defines the Square class, which inherits from the Rectangle class.
+"""
+
 from models.rectangle import Rectangle
+
 
 class Square(Rectangle):
     """
-    Represents a square, which is a special case of a rectangle with equal width and height.
-    Inherits from the Rectangle class.
+    Represents a square, a subclass of the Rectangle class.
+
+    Attributes:
+        size (int): The size of the square.
+        x (int): The x-coordinate of the square's position.
+        y (int): The y-coordinate of the square's position.
+        id (int): The unique identifier of the square.
     """
 
     def __init__(self, size, x=0, y=0, id=None):
         """
-        Initialize the Square instance.
+        Initializes a Square object.
 
         Args:
-            size (int): Size of the square (both width and height).
-            x (int, optional): X-coordinate of the position. Defaults to 0.
-            y (int, optional): Y-coordinate of the position. Defaults to 0.
-            id (int, optional): ID of the square. Defaults to None.
+            size (int): The size of the square.
+            x (int, optional): The x-coordinate of the square's position.
+            y (int, optional): The y-coordinate of the square's position.
+            id (int, optional): The unique identifier of the square.
         """
-        super().__init__(size, size, x, y, id)  # Call the Rectangle class constructor
-        # Since a square has equal width and height, we pass 'size' for both width and height.
+        super().__init__(size, size, x, y, id)
+
+    @property
+    def size(self):
+        """
+        Getter for the size attribute.
+        """
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """
+        Setter for the size attribute.
+        """
+        self.width = value
+        self.height = value
 
     def __str__(self):
         """
-        Return a string representation of the Square instance.
+        Overrides the __str__ method to provide a custom string representation.
 
         Returns:
-            str: String in the format '[Square] (<id>) <x>/<y> - <size>'.
+            str: A formatted string representation of the Square.
         """
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
