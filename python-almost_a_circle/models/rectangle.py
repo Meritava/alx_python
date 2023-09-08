@@ -1,90 +1,69 @@
-"""
-Module: rectangle.py
-This module defines the Rectangle class, which inherits from the Base class.
-"""
-from models.base import Base
+# models/rectangle.py
+from models.base import Base  # Import the Base class from the base module
 
 class Rectangle(Base):
     """
     Represents a rectangle with width, height, position (x, y), and an ID.
     Inherits from the Base class for ID management.
-
-    Attributes:
-        width (int): The width of the rectangle.
-        height (int): The height of the rectangle.
-        x (int): The x-coordinate of the rectangle's position.
-        y (int): The y-coordinate of the rectangle's position.
-        id (int): The unique ID of the rectangle inherited from the Base class.
     """
+
     def __init__(self, width, height, x=0, y=0, id=None):
         """
-        Initializes a Rectangle instance.
-
+        Initialize the Rectangle instance.
+        
         Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
-            x (int, optional): The x-coordinate of the rectangle's position. Defaults to 0.
-            y (int, optional): The y-coordinate of the rectangle's position. Defaults to 0.
-            id (int, optional): The unique ID of the rectangle. If not provided, it's managed by the Base class.
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
+            x (int, optional): X-coordinate of the position. Defaults to 0.
+            y (int, optional): Y-coordinate of the position. Defaults to 0.
+            id (int, optional): ID of the rectangle. Defaults to None.
         """
-        super().__init__(id)
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
+        super().__init__(id)  # Call the Base class constructor with id
+        self.__width = width
+        self.__height = height
+        self.__x = x
+        self.__y = y
 
     @property
-    def width(self):
-        """Getter for the width attribute."""
+    def get_width(self):
+        """Getter method for the width."""
         return self.__width
 
-    @width.setter
-    def width(self, value):
+    @get_width.setter
+    def get_width(self, value):
         """Setter method for the width."""
-        if not isinstance(value, int):
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.width_value = value
+        
+        self.__width = value
 
     @property
-    def height(self):
-        """Getter for the height attribute."""
+    def get_height(self):
+        """Getter method for the height."""
         return self.__height
 
-    @height.setter
-    def height(self, value):
+    @get_height.setter
+    def get_height(self, value):
         """Setter method for the height."""
-        if not isinstance(value, int):
-            raise TypeError("height must be an integer")
-        if value <= 0:
-            raise ValueError("height must be > 0")
-        self.height_value = value
+        
+        self.__height = value
 
     @property
-    def x(self):
-        """Getter for the x attribute."""
+    def get_x(self):
+        """Getter method for the x-coordinate."""
         return self.__x
 
-    @x.setter
+    @get_x.setter
     def x(self, value):
         """Setter method for the x-coordinate."""
-        if not isinstance(value, int):
-            raise TypeError("x must be an integer")
-        if value < 0:
-            raise ValueError("x must be >= 0")
-        self.x_value = value
+        
+        self.__x = value
 
     @property
-    def y(self):
-        """Getter for the y attribute."""
+    def get_y(self):
+        """Getter method for the y-coordinate."""
         return self.__y
 
-    @y.setter
-    def y(self, value):
+    @get_y.setter
+    def get_y(self, value):
         """Setter method for the y-coordinate."""
-        if not isinstance(value, int):
-            raise TypeError("y must be an integer")
-        if value < 0:
-            raise ValueError("y must be >= 0")
-        self.y_value = value
+       
+        self.__y = value

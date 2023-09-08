@@ -23,5 +23,5 @@ class Base:
         if id is not None:
             self.id = id
         else:
-            Base.__nb_objects += 1  # Increment the object counter
-            self.id = Base.__nb_objects  # Assign the new value to the 'id' attribute
+            Base.__nb_objects += 1  # Increment the object counter. this means increanment the attribute defined in the base class with one and 
+            self.id = Base.__nb_objects  # Assign the new value to the 'id' attribute... and assign the value to the id
