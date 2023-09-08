@@ -112,3 +112,11 @@ class Rectangle(Base):
             raise TypeError(f"{attribute_name} must be an integer")
         if value < 0:
             raise ValueError(f"{attribute_name} must be >= 0")
+    def area(self):
+        """
+        Calculates and returns the area value of the Rectangle instance.
+
+        Returns:
+            int: The area of the rectangle.
+        """
+        return self.width * self.height
