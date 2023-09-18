@@ -1,25 +1,27 @@
-""" 
-This is a Python script that takes URL and send a request to the url
-and display the response of the results.
-"""
-import sys
 import requests
+import sys
 
+def fetch_and_display_response(url):
+    """
+    Fetches the response from the provided URL and displays the body.
 
-""" 
-This function send request using the url requests module
+    Args:
+        url (str): The URL to send the GET request to.
+    """
+    response = requests.get(url)
+    status_code = response.status_code
+    content = response.text
 
-Parameters:
-    URL: the link to the url to send request to
-    
-Return:
-    return: the text response
-    
-"""
+    # Display the body of the response
+    print(content)
 
-url = sys.argv[1]
-response = requests.get(url)
-if response.status_code >= 400:
-    print("Error code:", response.status_code)
-else:
-    print(response)
+    # Check if the HTTP status code is greater than or equal to 400
+    if status_code >= 400:
+        print("Error code:", status_code)
+
+if __name__ == '__main__':
+    """
+    Main entry point of the script.
+    """
+    url = sys.argv[1]
+    fetch_and_display_response(url)
