@@ -43,3 +43,16 @@ if __name__ == '__main__':
         print(x_request_id)
     else:
         print()
+
+
+
+"""
+import sys
+import requests
+
+try:
+    response = requests.get(str(sys.argv[1]))
+    print(response.headers['X-Request-Id'])
+except:
+    print(None)
+"""
