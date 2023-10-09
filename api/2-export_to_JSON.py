@@ -1,59 +1,62 @@
-import requests
+"""
+Employee Task Data Exporter
+
+This module retrieves task data for a specific employee from a remote API and exports it to a JSON file.
+
+Usage:
+    python script.py <employee_id>
+
+Example:
+    python script.py 1
+
+Requirements:
+    - requests library (install using 'pip install requests')
+
+"""
+
 import json
+import requests
 import sys
 
-def get_employee_todo_progress(employee_id):
-    # Define the base URL for the JSONPlaceholder API
-    base_url = "https://jsonplaceholder.typicode.com"
 
-    # Make a GET request to retrieve the employee's TODO list
-    todos_url = f"{base_url}/users/{employee_id}/todos"
-    response = requests.get(todos_url)
+def get_employee_data(employee_id):
+    # Define the API endpoints
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        todos_data = response.json()
-        
-        # Calculate the number of completed tasks
-        completed_tasks = [todo for todo in todos_data if todo['completed']]
-        num_completed_tasks = len(completed_tasks)
-        total_num_tasks = len(todos_data)
-
-        # Fetch the employee's name from user details
-        user_url = f"{base_url}/users/{employee_id}"
+    try:
+        # Fetch user data
         user_response = requests.get(user_url)
         user_data = user_response.json()
-        employee_name = user_data.get('name', 'Unknown Employee')
+        username = user_data.get('username')
 
-        # Create a list of dictionaries for each task
-        tasks_list = [
-            {
-                "task": task['title'],
-                "completed": task['completed'],
-                "username": employee_name
+        # Fetch TODO list data
+        todos_response = requests.get(todos_url)
+        todos_data = todos_response.json()
+
+        # Create a list to store tasks for this employee
+        user_tasks = []
+
+        # Populate the user_tasks list
+        for task in todos_data:
+            task_data = {
+                "task": task["title"],
+                "completed": task["completed"],
+                "username": username
             }
-            for task in todos_data
-        ]
+            user_tasks.append(task_data)
 
-        # Create a dictionary to represent the JSON data
-        json_data = {
-            "USER_ID": tasks_list
-        }
+        # Write the data to a JSON file named USER_ID.json
+        output_file = f"{employee_id}.json"
+        with open(output_file, "w") as json_file:
+            json.dump(user_tasks, json_file)
 
-        # Export data to a JSON file
-        json_filename = f"{employee_id}.json"
-        with open(json_filename, 'w') as json_file:
-            json.dump(json_data, json_file, indent=4)
-        
-        print(f"Data exported to {json_filename}")
-        print(f"Employee {employee_name} is done with tasks ({num_completed_tasks}/{total_num_tasks}):")
+        print(f"Data exported to {output_file}")
 
-        # Print the titles of completed tasks
-        for task in completed_tasks:
-            print(f"\t {task['title']}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        sys.exit(1)
 
-    else:
-        print("Failed to fetch data from the API.")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -61,4 +64,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     employee_id = int(sys.argv[1])
-    get_employee_todo_progress(employee_id)
+    get_employee_data(employee_id)

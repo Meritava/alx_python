@@ -1,56 +1,67 @@
-import requests
+"""
+Employee Task Data Exporter
+
+This module retrieves task data for a specific employee from a remote API and exports it to a JSON file.
+
+Usage:
+    python script.py <employee_id>
+
+Example:
+    python script.py 1
+
+Requirements:
+    - requests library (install using 'pip install requests')
+
+"""
+
 import json
+import requests
+import sys
 
-def export_all_employee_tasks():
-    # Define the base URL for the JSONPlaceholder API
-    base_url = "https://jsonplaceholder.typicode.com"
 
-    # Make a GET request to retrieve all users
-    users_url = f"{base_url}/users"
-    response = requests.get(users_url)
+def get_employee_data(employee_id):
+    # Define the API endpoints
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        users_data = response.json()
-        
-        # Create a dictionary to store tasks for all employees
-        all_tasks = {}
+    try:
+        # Fetch user data
+        user_response = requests.get(user_url)
+        user_data = user_response.json()
+        username = user_data.get('username')
 
-        # Iterate over each user to fetch their tasks
-        for user in users_data:
-            user_id = user['id']
-            username = user['username']
+        # Fetch TODO list data
+        todos_response = requests.get(todos_url)
+        todos_data = todos_response.json()
 
-            # Make a GET request to retrieve the user's TODO list
-            todos_url = f"{base_url}/users/{user_id}/todos"
-            todos_response = requests.get(todos_url)
+        # Create a list to store tasks for this employee
+        user_tasks = []
 
-            # Check if the request was successful (status code 200)
-            if todos_response.status_code == 200:
-                todos_data = todos_response.json()
+        # Populate the user_tasks list
+        for task in todos_data:
+            task_data = {
+                "task": task["title"],
+                "completed": task["completed"],
+                "username": username
+            }
+            user_tasks.append(task_data)
 
-                # Create a list of dictionaries for each task
-                tasks_list = [
-                    {
-                        "task": task['title'],
-                        "completed": task['completed'],
-                        "username": username
-                    }
-                    for task in todos_data
-                ]
+        # Write the data to a JSON file named USER_ID.json
+        output_file = f"{employee_id}.json"
+        with open(output_file, "w") as json_file:
+            json.dump(user_tasks, json_file)
 
-                # Add the tasks to the dictionary using the user ID as the key
-                all_tasks[user_id] = tasks_list
-        
-        # Export data to a JSON file
-        json_filename = "todo_all_employees.json"
-        with open(json_filename, 'w') as json_file:
-            json.dump(all_tasks, json_file, indent=4)
-        
-        print(f"Data exported to {json_filename}")
+        print(f"Data exported to {output_file}")
 
-    else:
-        print("Failed to fetch data from the API.")
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
 
 if __name__ == "__main__":
-    export_all_employee_tasks()
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+
+    employee_id = int(sys.argv[1])
+    get_employee_data(employee_id)
